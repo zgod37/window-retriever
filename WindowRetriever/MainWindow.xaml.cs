@@ -22,7 +22,11 @@ namespace WindowRetriever {
         Retriever retriever;
 
         public MainWindow() {
+
+            MessageBox.Show($"{Properties.Settings.Default.CurrentVersionStr} \n {Properties.Settings.Default.ProjectHomepageStr}");
+
             InitializeComponent();
+
             retriever = new Retriever(this);
             retriever.getCurrentWindows();
         }
@@ -44,6 +48,10 @@ namespace WindowRetriever {
             foreach (String title in keys) {
                 listBox.Items.Add(title);
             }
+        }
+
+        private void settingsButton_Click(object sender, RoutedEventArgs e) {
+            new SettingsWindow().Show();
         }
     }
 }

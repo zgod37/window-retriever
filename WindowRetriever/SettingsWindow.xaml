@@ -1,0 +1,32 @@
+﻿<Window x:Class="WindowRetriever.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WindowRetriever"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Settings" Height="300" Width="210" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Background="LightBlue"
+        KeyDown="Window_KeyDown" MouseDown="Window_MouseDown">
+    <Window.Resources>
+        <sys:String x:Key="changePositionStr">Set Default Position</sys:String>
+        <sys:String x:Key="currentCursorPostionStr">Cursor Position:</sys:String>
+        <sys:String x:Key="positionToolTipStr">The screen coordinates that windows will be moved to when the 
+            "Retrieve" button is clicked </sys:String>
+        <sys:String x:Key="cursorToolTipStr">Press the 'c' key to get the coordinates of the cursor
+            Note: Make sure this window has focus</sys:String>
+    </Window.Resources>
+
+    <Grid Focusable="True" Name="settingsGrid">
+        <Label x:Name="changePositionLabel" Content="{StaticResource changePositionStr}" HorizontalAlignment="Left" Margin="10,10,0,0"
+               VerticalAlignment="Top" FontSize="16" ToolTip="{StaticResource positionToolTipStr}"/>
+        <Label x:Name="xLabel" Content="X" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="xTextBox" HorizontalAlignment="Left" Height="23" Margin="32,44,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50" MaxLength="5"/>
+        <Label x:Name="yLabel" Content="Y" HorizontalAlignment="Left" Margin="89,40,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="yTextBox" HorizontalAlignment="Left" Height="23" Margin="111,44,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>
+        <Label x:Name="currentPositionLabel" Content="{StaticResource currentCursorPostionStr}" FontSize="12" 
+               HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" ToolTip="{StaticResource cursorToolTipStr}" />
+        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="10,104,10,10" VerticalAlignment="Top"
+                Width="150" Height="45" Background="Gray" FontSize="16" Click="saveButton_Click" />
+    </Grid>
+</Window>

@@ -64,11 +64,12 @@ namespace WindowRetriever {
         public void getCurrentWindows() {
 
             currentWindows.Clear();
+
             //add unique id in-case two windows are open with identical titles
             int id = 0;
             EnumDelegate filter = delegate (IntPtr hWnd, int lParam) {
 
-                //build the window title
+                //build the window title with unique id
                 StringBuilder strbTitle = new StringBuilder(255);
                 int nLength = GetWindowText(hWnd, strbTitle, strbTitle.Capacity + 1);
                 String strTitle = strbTitle.ToString();
@@ -96,17 +97,21 @@ namespace WindowRetriever {
         public void moveWindowToPrimaryMonitor(String title) {
             if (currentWindows.ContainsKey(title)) {
 
+                //get default retrieval position
+                int X = (int)Properties.Settings.Default["DefaultXPosition"];
+                int Y = (int)Properties.Settings.Default["DefaultYPosition"];
+
                 //un-minimize window if needed
                 if (IsIconic(currentWindows[title])) {
                     OpenIcon(currentWindows[title]);
                 }
 
-                if (!SetWindowPos(currentWindows[title], IntPtr.Zero, 10, 10, 0, 0, SWP_NOSIZE | SWP_NOZORDER)) {
+                if (!SetWindowPos(currentWindows[title], IntPtr.Zero, X, Y, 0, 0, SWP_NOSIZE | SWP_NOZORDER)) {
                     //an error occurred
                     int errorCode = Marshal.GetLastWin32Error();
                     String errorMessage = new Win32Exception(errorCode).Message;
                     if (errorCode == 5) {
-                        errorMessage += "\n Try running as adminstrator";
+                        errorMessage += "\nDeveloper's note: Try running WindowRetriever as adminstrator";
                     }
                     MessageBox.Show($"Received error {errorCode} - {errorMessage}");
                 }
@@ -117,8 +122,13 @@ namespace WindowRetriever {
         /// move all currentWindows to primary monitor
         /// </summary>
         public void moveAllWindowsToPrimaryMonitor() {
+            
+            //get default retrieval position
+            int X = (int)Properties.Settings.Default["DefaultXPosition"];
+            int Y = (int)Properties.Settings.Default["DefaultYPosition"];
+
             foreach (String title in currentWindows.Keys) {
-                SetWindowPos(currentWindows[title], IntPtr.Zero, 10, 10, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+                SetWindowPos(currentWindows[title], IntPtr.Zero, X, Y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
             }
         }
 

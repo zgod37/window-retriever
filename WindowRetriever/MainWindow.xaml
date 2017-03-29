@@ -6,11 +6,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowRetriever"
         mc:Ignorable="d"
-        Title="Window Retreiver" Height="475" Width="525" ResizeMode="CanMinimize" Background="LightBlue">
+        Title="Window Retreiver" Height="475" Width="525" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" Background="LightBlue">
     <Window.Resources>
 
         <sys:String x:Key="titleStr">Window Retreiver</sys:String>
         <sys:String x:Key="refreshStr">Refresh</sys:String>
+        <sys:String x:Key="settingsStr">Settings</sys:String>
         <sys:String x:Key="retrieveStr">Retreive Window</sys:String>
 
         <Style TargetType="Button">
@@ -20,11 +21,15 @@
         
     </Window.Resources>
     <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="327" Margin="10,39,0,0" VerticalAlignment="Top" Width="497" />
-        <Button x:Name="refreshButton"  Content="{StaticResource refreshStr}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="327" Margin="10,39,10,10" VerticalAlignment="Top" Width="497" />
+        <Button x:Name="refreshButton"  Content="{StaticResource refreshStr}" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="75"
                 Click="refreshButton_Click"/>
-        <Button x:Name="retrieveButton" Content="{StaticResource retrieveStr}" HorizontalAlignment="Left" Margin="10,377,0,0" VerticalAlignment="Top" Width="141" Height="44" 
+        <Button x:Name="retrieveButton" Content="{StaticResource retrieveStr}" HorizontalAlignment="Left" Margin="10,377,10,10"
+                VerticalAlignment="Top" Width="140" Height="45" 
                 Click="retrieveButton_Click"/>
+        <Button x:Name="settingsButton" Content="{StaticResource settingsStr}" HorizontalAlignment="Left" Margin="432,10,10,10" 
+                VerticalAlignment="Top" Width="75"
+                Click="settingsButton_Click"/>
 
     </Grid>
 </Window>
