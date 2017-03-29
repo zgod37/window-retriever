@@ -4,7 +4,7 @@ A simple program for Windows that shows you a list of the current open windows o
 
 ### Features
 
-The listbox shows you a list of the current open and visible windows on your desktop.  To retrieve a window, simply select it in the listbox, and click the "Retrieve" button.  NOTE: if you receive an error message, it could be because the window no longer exists, or because the window is set to a higher user priority.  In the latter case, running WindowRetriever as administrator should fix that problem.
+The listbox shows you a list of the current open and visible windows on your desktop.  To retrieve a window, simply select it in the listbox, and click the "Retrieve" button.
 
 By default, pressing the "Retrieve" button will move a window to the screen coordinates [10,10].  In most Windows environments, this will be the top-left corner of your primary monitor.  If you want the windows to move to different coordinates, click the "Settings" button and enter the coordinates manually, and click the "Save" button.  If you don't know the coordinates of your desired position, simply move your mouse cursor to that position and press the "C" key on your keyboard (just make sure the "Settings" window has focus first).  This will update the "Current Position" label with the coordinates of wherever your mouse is at that instant.
 
