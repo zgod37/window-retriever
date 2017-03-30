@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowRetriever"
         mc:Ignorable="d"
-        Title="Window Retreiver" Height="475" Width="525" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" Background="LightBlue">
+        Title="Window Retreiver" Height="475" Width="425" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" Background="LightBlue">
     <Window.Resources>
 
         <sys:String x:Key="titleStr">Window Retreiver</sys:String>
@@ -18,16 +18,16 @@
             <Setter Property="Background" Value="DarkGray"></Setter>
             <Setter Property="FontSize" Value="15"></Setter>
         </Style>
-        
+
     </Window.Resources>
     <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="327" Margin="10,39,10,10" VerticalAlignment="Top" Width="497" />
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="327" Margin="10,39,10,10" VerticalAlignment="Top" Width="375" />
         <Button x:Name="refreshButton"  Content="{StaticResource refreshStr}" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="75"
                 Click="refreshButton_Click"/>
         <Button x:Name="retrieveButton" Content="{StaticResource retrieveStr}" HorizontalAlignment="Left" Margin="10,377,10,10"
                 VerticalAlignment="Top" Width="140" Height="45" 
                 Click="retrieveButton_Click"/>
-        <Button x:Name="settingsButton" Content="{StaticResource settingsStr}" HorizontalAlignment="Left" Margin="432,10,10,10" 
+        <Button x:Name="settingsButton" Content="{StaticResource settingsStr}" HorizontalAlignment="Left" Margin="310,10,0,0" 
                 VerticalAlignment="Top" Width="75"
                 Click="settingsButton_Click"/>
 
