@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WindowRetriever"
         mc:Ignorable="d"
-        Title="Window Retreiver" Height="475" Width="425" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" Background="LightBlue">
+        Title="Window Retreiver" Height="475" Width="425" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" Background="LightBlue"
+        KeyDown="Window_KeyDown">
     <Window.Resources>
 
         <sys:String x:Key="titleStr">Window Retreiver</sys:String>

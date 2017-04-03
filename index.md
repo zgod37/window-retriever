@@ -3,7 +3,7 @@
 A simple program for Windows that allows you to retrieve any open windows on your desktop without having to manually interact with them.  Great if you're on a desktop with multiple monitors that may not always be turned on.  Instead of having to turn the monitor on and find the desired window, this app will retrieve it and move it to any location you want.
 
 <div style="text-align:center; padding: 20px">
-<img src="http://imgur.com/sebL5Il.jpg" alt="pic1">
+<img src="http://imgur.com/gysWvz7.jpg" alt="pic1">
 </div>
 
 ### Download
@@ -12,7 +12,9 @@ A simple program for Windows that allows you to retrieve any open windows on you
 
 ### Features
 
-The listbox shows you a list of the current open and visible windows on your desktop, the **Refresh** button will update this list.  To retrieve a window, simply select it in the listbox, and click the **Retrieve Window** button.
+The listbox shows you a list of the current open and visible windows on your desktop, the **Refresh** button will update this list.  To retrieve a window, simply select it in the listbox, and click the **Retrieve Window** button.  
+
+**New in v1.1** - You can also have the window be moved to where your cursor is currently located by pressing the "C" key.
 
 #### Settings
 

@@ -65,7 +65,7 @@ namespace WindowRetriever {
 
             currentWindows.Clear();
 
-            //add unique id in-case two windows are open with identical titles
+            //add unique id for duplicate window titles
             int id = 0;
             EnumDelegate filter = delegate (IntPtr hWnd, int lParam) {
 
@@ -91,41 +91,66 @@ namespace WindowRetriever {
         }
 
         /// <summary>
-        /// Move the desired window to primary monitor
+        /// Move a desktop window to the desired position
         /// </summary>
-        /// <param name="title">the stored title for the window</param>
-        public void moveWindowToPrimaryMonitor(String title) {
+        /// <param name="hWnd"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        private void moveWindowToPosition(String title, int X, int Y) {
             if (currentWindows.ContainsKey(title)) {
 
-                //get default retrieval position
-                int X = (int)Properties.Settings.Default["DefaultXPosition"];
-                int Y = (int)Properties.Settings.Default["DefaultYPosition"];
+                IntPtr hWnd = currentWindows[title];
 
                 //un-minimize window if needed
-                if (IsIconic(currentWindows[title])) {
-                    OpenIcon(currentWindows[title]);
+                if (IsIconic(hWnd)) {
+                    OpenIcon(hWnd);
                 }
 
-                if (!SetWindowPos(currentWindows[title], IntPtr.Zero, X, Y, 0, 0, SWP_NOSIZE | SWP_NOZORDER)) {
-                    //an error occurred
+                //set window position and handle any errors
+                if (!SetWindowPos(hWnd, IntPtr.Zero, X, Y, 0, 0, SWP_NOSIZE | SWP_NOZORDER)) {
                     int errorCode = Marshal.GetLastWin32Error();
                     String errorMessage = new Win32Exception(errorCode).Message;
                     if (errorCode == 5) {
-                        errorMessage += "\nDeveloper's note: Try running WindowRetriever as adminstrator";
+                        errorMessage += "\nNote: Try running WindowRetriever as adminstrator";
                     }
                     MessageBox.Show($"Received error {errorCode} - {errorMessage}");
                 }
             }
         }
 
+
+        public void moveWindowToCursorPosition(String title) {
+            Point cursorPosition = mainWindow.GetMousePosition();
+            moveWindowToPosition(title, (int) cursorPosition.X, (int) cursorPosition.Y);
+        }
+
+        /// <summary>
+        /// Move the desired window to position [10,10]
+        /// this *should* be the top-left corner of the primary monitor
+        /// </summary>
+        /// <param name="title"></param>
+        public void moveWindowToPrimaryMonitor(String title) {
+            moveWindowToPosition(title, 10, 10);
+        }
+
+        /// <summary>
+        /// Move given window to the default position
+        /// </summary>
+        /// <param name="title"></param>
+        public void moveWindowToDefaultPosition(String title) {
+            int X = Properties.Settings.Default.DefaultXPosition;
+            int Y = Properties.Settings.Default.DefaultYPosition;
+            moveWindowToPosition(title, X, Y);
+        }
+
         /// <summary>
         /// move all currentWindows to primary monitor
         /// </summary>
         public void moveAllWindowsToPrimaryMonitor() {
-            
+
             //get default retrieval position
-            int X = (int)Properties.Settings.Default["DefaultXPosition"];
-            int Y = (int)Properties.Settings.Default["DefaultYPosition"];
+            int X = Properties.Settings.Default.DefaultXPosition;
+            int Y = Properties.Settings.Default.DefaultYPosition;
 
             foreach (String title in currentWindows.Keys) {
                 SetWindowPos(currentWindows[title], IntPtr.Zero, X, Y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
