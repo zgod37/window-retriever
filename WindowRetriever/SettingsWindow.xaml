@@ -6,27 +6,64 @@
         xmlns:local="clr-namespace:WindowRetriever"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Settings" Height="300" Width="210" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Background="LightBlue"
-        KeyDown="Window_KeyDown" MouseDown="Window_MouseDown">
+        Title="Settings" Height="300" Width="210" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Background="LightBlue">
+
     <Window.Resources>
-        <sys:String x:Key="changePositionStr">Set Default Position</sys:String>
-        <sys:String x:Key="currentCursorPostionStr">Cursor Position:</sys:String>
-        <sys:String x:Key="positionToolTipStr">The screen coordinates that windows will be moved to when the 
-            "Retrieve" button is clicked </sys:String>
-        <sys:String x:Key="cursorToolTipStr">Press the 'c' key to get the coordinates of the cursor
-            Note: Make sure this window has focus</sys:String>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="DarkGray"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+
     </Window.Resources>
 
-    <Grid Focusable="True" Name="settingsGrid">
-        <Label x:Name="changePositionLabel" Content="{StaticResource changePositionStr}" HorizontalAlignment="Left" Margin="10,10,0,0"
-               VerticalAlignment="Top" FontSize="16" ToolTip="{StaticResource positionToolTipStr}"/>
-        <Label x:Name="xLabel" Content="X" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="xTextBox" HorizontalAlignment="Left" Height="23" Margin="32,44,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50" MaxLength="5"/>
-        <Label x:Name="yLabel" Content="Y" HorizontalAlignment="Left" Margin="89,40,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="yTextBox" HorizontalAlignment="Left" Height="23" Margin="111,44,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>
-        <Label x:Name="currentPositionLabel" Content="{StaticResource currentCursorPostionStr}" FontSize="12" 
-               HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" ToolTip="{StaticResource cursorToolTipStr}" />
-        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="10,104,10,10" VerticalAlignment="Top"
-                Width="150" Height="45" Background="Gray" FontSize="16" Click="saveButton_Click" />
-    </Grid>
+    <Window.InputBindings>
+        <KeyBinding Key="C"
+                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, 
+                                                        Path=DataContext.UpdatePositionCommand}" />
+    </Window.InputBindings>
+
+    <Border Margin="10">
+        <StackPanel>
+
+            <!-- Default Retrieve Position -->
+            <TextBlock Text="Default Retrieve Position" Margin="0 0 0 5" HorizontalAlignment="Center" />
+            <StackPanel>
+
+                <Grid Margin="10 0 10 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Grid.Column="0" Text="X = " HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Padding="5"
+                             Text="{Binding XString}"/>
+                </Grid>
+
+                <Grid Margin="10 10 10 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Grid.Column="0" Text="Y = " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" Padding="5"
+                             Text="{Binding YString}"/>
+                </Grid>
+            </StackPanel>
+
+            <!-- Save button -->
+            <Button Content="Save" Height="40" Margin="0 10 0 0"
+                    Command="{Binding SaveCommand}" Click="CloseWindowOnSave"/>
+
+        </StackPanel>
+    </Border>
+
 </Window>
