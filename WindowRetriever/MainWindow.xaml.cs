@@ -21,6 +21,8 @@ namespace WindowRetriever {
         /// <param name="e"></param>
         private void showSettingsWindow(object sender, RoutedEventArgs e) {
             var window = new SettingsWindow();
+            window.Top = this.Top + 5;
+            window.Left = this.Left + 5;
             window.Show();
         }
     }

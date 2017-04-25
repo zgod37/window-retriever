@@ -30,9 +30,9 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Content="Refresh" Command="{Binding RefreshCommand}" 
-                    Margin="0 0 0 10" HorizontalAlignment="Left" Grid.Column="0"/>
+                    Margin="0 0 0 10" Padding="10 0" HorizontalAlignment="Left" Grid.Column="0"/>
                 <Button Content="Settings" Click="showSettingsWindow"
-                         Margin="0 0 0 10" HorizontalAlignment="Right" Grid.Column="1"/>
+                         Margin="0 0 0 10" Padding="10 0" HorizontalAlignment="Right" Grid.Column="1"/>
             </Grid>
 
             
