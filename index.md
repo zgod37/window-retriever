@@ -3,7 +3,7 @@
 A simple program for Windows that allows you to retrieve any open windows on your desktop without having to manually interact with them.  Great if you're on a desktop with multiple monitors that may not always be turned on.  Instead of having to turn the monitor on and find the desired window, this app will retrieve it and move it to any location you want.
 
 <div style="text-align:center; padding: 20px">
-<http://i.imgur.com/sebL5Il.jpg" alt="pic1">
+<img src="http://i.imgur.com/sebL5Il.jpg" alt="pic1">
 </div>
 
 ### Download
